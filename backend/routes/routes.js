@@ -1,7 +1,5 @@
 import express from "express";
-
 import db from "../db/connection.js";
-
 import { ObjectId } from "mongodb";
 
 
@@ -23,7 +21,7 @@ router.get("/character/:id", async (req, res) => {
     if (!result) {
         res.send("Character not found").status(404);
     } else {
-        res.send(results).status(200);
+        res.send(result).status(200);
     }
 });
 
@@ -32,6 +30,7 @@ router.post("/character", async (req, res) => {
     try {
         let newDocument = {
             name: req.body.name,
+            part: Number(req.body.part)
         };
 
         let characters = await db.collection("Characters");
@@ -49,7 +48,8 @@ router.patch("/character/:id", async (req, res) => {
         const query = { _id: ObjectId.createFromHexString(req.params.id) };
         const updates = {
             $set: {
-                name: req.body.name
+                name: req.body.name,
+                part: Number(req.part.name),
             }
         };
 
