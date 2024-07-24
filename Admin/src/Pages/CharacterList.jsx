@@ -19,7 +19,7 @@ function CharacterList() {
   
   useEffect(() => {
     getCharacterList();
-  }, [characterList.length]);
+  }, []);
 
   const editCharacter = (id) => {
     navigate("/characters/edit/" + id);
@@ -41,9 +41,8 @@ function CharacterList() {
   return (
     <div>
         <div>
-          <button onClick={() => navigate("/characters/add")}>
-            Add
-          </button>
+          <button onClick={() => navigate("/")}>Home</button>
+          <button onClick={() => navigate("/characters/add")}>Add Character</button>
         </div>
         <div>
           <h3>CharacterList</h3>

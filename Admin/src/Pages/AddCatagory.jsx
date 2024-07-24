@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 
-function AddCharacter() {
+function AddCatagory() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [form, setForm] = useState({
     name: "",
-    part: ""
+    characters: [],
+    difficulty: "",
   })
 
   useEffect(() => {
     if (id) {
-      getCharacter(id);
+      getCatagory(id);
     }
   }, []);
 
-  async function getCharacter(id) {
-    const response = await fetch(`http://localhost:5050/character/` + id);
+  async function getCatagory(id) {
+    const response = await fetch(`http://localhost:5050/catagory/` + id);
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;
       console.error(message);
       return;
     }
-    const character = await response.json();
-    document.getElementById("name").value = character.name;
-    document.getElementById("part").value = character.part;
-    setForm({name: character.name, part: character.part});
+    const catagory = await response.json();
+    document.getElementById("name").value = catagory.name;
+    // document.getElementById("characters").value = catagory.characters;
+    document.getElementById("difficulty").value = catagory.difficulty;
+    setForm({name: catagory.name, characters: catagory.characters, difficulty: catagory.difficulty});
   }
 
   async function handleSubmit(e) {
@@ -35,7 +37,7 @@ function AddCharacter() {
 
     if (id) {
       try {
-        let response = await fetch("http://localhost:5050/character/" + id, {
+        let response = await fetch("http://localhost:5050/catagory/" + id, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -47,7 +49,7 @@ function AddCharacter() {
       }
     } else {
       try {
-        let response = await fetch("http://localhost:5050/character", {
+        let response = await fetch("http://localhost:5050/catagory", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -59,7 +61,7 @@ function AddCharacter() {
       }
     }
 
-    navigate("/characters/");
+    navigate("/catagories/");
   }
 
   const handleChange = (e) => {
@@ -68,13 +70,12 @@ function AddCharacter() {
       [e.target.name]: e.target.value
     });
   };
-
   
   return (
     <div>
       <div>
-        <button onClick={() => navigate("/characters/")}>
-          Character List
+        <button onClick={() => navigate("/catagories/")}>
+          Catagory List
         </button>
       </div>
       <div>
@@ -85,18 +86,13 @@ function AddCharacter() {
         <input type="text" name="name" id="name" placeholder="Name" onChange={handleChange} required/>
         <br />
 
-        <label>Part: </label>
-        <select name="part" id="part" onChange={handleChange} required>
-          <option value="">Select Part</option>
-          <option value="1">Part 1</option>
-          <option value="2">Part 2</option>
-          <option value="3">Part 3</option>
-          <option value="4">Part 4</option>
-          <option value="5">Part 5</option>
-          <option value="6">Part 6</option>
-          <option value="7">Part 7</option>
-          <option value="8">Part 8</option>
-          <option value="9">Part 9</option>
+        <label>Difficulty: </label>
+        <select name="difficulty" id="difficulty" onChange={handleChange} required>
+          <option value="">Select Difficulty</option>
+          <option value="1">Easy</option>
+          <option value="2">Medium</option>
+          <option value="3">Hard</option>
+          <option value="4">Extreme</option>
         </select>
         <br />
         
@@ -106,4 +102,4 @@ function AddCharacter() {
   )
 }
 
-export default AddCharacter
+export default AddCatagory
