@@ -30,15 +30,12 @@ function CharacterList() {
 
     try {
       let response = await fetch("http://localhost:5050/character/" + character._id, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        }
+        method: "DELETE"
       });
     } catch (err) {
       console.error(err);
     }
-    window.location.reload();
+    getCharacterList();
   }
   
   return (
@@ -56,7 +53,6 @@ function CharacterList() {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>id</th>
                 <th>Part</th>
               </tr>
             </thead>
@@ -65,10 +61,9 @@ function CharacterList() {
                 return (
                   <tr key={index}>
                     <td>{character.name}</td>
-                    <td>{character._id}</td>
                     <td>{character.part}</td>
-                    <td><div><a onClick={() => editCharacter(character._id)}>Edit</a></div></td>
-                    <td><div><a onClick={() => deleteCharacter(character)}>Delete</a></div></td>
+                    <td><button onClick={() => editCharacter(character._id)}>Edit</button></td>
+                    <td><button onClick={() => deleteCharacter(character)}>Delete</button></td>
                   </tr>
                 );
               })}
