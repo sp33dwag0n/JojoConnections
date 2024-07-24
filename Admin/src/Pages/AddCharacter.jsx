@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 
 function AddCharacter() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [form, setForm] = useState({
     name: "",
     part: ""
   })
+
+  useEffect(() => {
+    if (id) {
+      getCharacter(id);
+    }
+  }, []);
+
+  async function getCharacter(id) {
+    const response = await fetch(`http://localhost:5050/character/` + id);
+    if (!response.ok) {
+      const message = `An error occurred: ${response.statusText}`;
+      console.error(message);
+      return;
+    }
+    const character = await response.json();
+    document.getElementById("name").value = character.name;
+    document.getElementById("part").value = character.part;
+    setForm({name: character.name, part: character.part});
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -14,16 +34,31 @@ function AddCharacter() {
     if (!window.confirm("Add " + form.name + " from Part " + form.part + "?")) return;
     
     const person = { ...form };
-    try {
-      let response = await fetch("http://localhost:5050/character", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(person),
-      });
-    } catch (err) {
-      console.error(err);
+
+    if (id) {
+      try {
+        let response = await fetch("http://localhost:5050/character/" + id, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(person),
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      try {
+        let response = await fetch("http://localhost:5050/character", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(person),
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     navigate("/characters/");
@@ -49,11 +84,11 @@ function AddCharacter() {
       </div>
       <form onSubmit={handleSubmit}>
         <label>Name: </label>
-        <input type="text" name="name" placeholder="Name" onChange={handleChange} required/>
+        <input type="text" name="name" id="name" placeholder="Name" onChange={handleChange} required/>
         <br />
 
         <label>Part: </label>
-        <select name="part" onChange={handleChange} required>
+        <select name="part" id="part" onChange={handleChange} required>
           <option value="">Select Part</option>
           <option value="1">Part 1</option>
           <option value="2">Part 2</option>

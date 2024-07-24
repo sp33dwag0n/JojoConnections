@@ -49,7 +49,7 @@ router.patch("/character/:id", async (req, res) => {
         const updates = {
             $set: {
                 name: req.body.name,
-                part: Number(req.part.name),
+                part: Number(req.body.part),
             }
         };
 
