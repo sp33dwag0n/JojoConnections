@@ -8,7 +8,20 @@ const catagory = express.Router();
 // Get catagory list
 catagory.get("/", async (req, res) => {
     let catagories = await db.collection("catagories");
-    let results = await catagories.find({}).toArray();
+    let results = await catagories.find({}).toArray(); 
+    let characters = await db.collection("characters");
+    
+    let length = results.length
+    for (let i = 0; i < length; i++) {
+        let characterNameArray = [];
+        let numCharacters = results[i].characters.length;
+        for (let j = 0; j < numCharacters; j++) {
+            let query = { _id: ObjectId.createFromHexString(results[i].characters[j]) }
+            let singleCharacter = await characters.findOne(query);
+            characterNameArray[j] = singleCharacter.name;
+        }
+        results[i].characterNames = characterNameArray;
+    }
     res.send(results).status(200);
 });
 
