@@ -69,6 +69,27 @@ character.delete("/:id", async (req, res) => {
 
         const characters = await db.collection("characters");
         let result = await characters.deleteOne(query);
+
+        const catagories = await db.collection("catagories");
+        const catagoryQuery = { characters: req.params.id };
+        let catagoriesResult = await catagories.find(catagoryQuery).toArray();
+        let catagoriesLength = catagoriesResult.length;
+        for (let i = 0; i < catagoriesLength; i++) {
+            let index = catagoriesResult[i].characters.indexOf(req.params.id);
+            catagoriesResult[i].characters.splice(index, 1);
+            const updates = {
+                $set: {
+                    name: catagoriesResult[i].name,
+                    characters: catagoriesResult[i].characters,
+                    difficulty: Number(catagoriesResult[i].difficulty)
+                }
+            };
+
+            let updateQuery = { _id: catagoriesResult[i]._id };
+            await catagories.updateOne(updateQuery, updates);
+        }
+        
+        console.log(catagoriesLength);
         res.send(result).status(200);
     } catch (err) {
         console.error(err);

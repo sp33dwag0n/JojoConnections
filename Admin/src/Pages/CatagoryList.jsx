@@ -61,7 +61,7 @@ function CatagoryList() {
                 return (
                   <tr key={index}>
                     <td>{catagory.name}</td>
-                    <td>{catagory.characters}</td>
+                    <td>{catagory.characterNames}</td>
                     <td>{catagory.difficulty}</td>
                     <td><button onClick={() => editCatagory(catagory._id)}>Edit</button></td>
                     <td><button onClick={() => deleteCatagory(catagory)}>Delete</button></td>
