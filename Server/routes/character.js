@@ -79,9 +79,7 @@ character.delete("/:id", async (req, res) => {
             catagoriesResult[i].characters.splice(index, 1);
             const updates = {
                 $set: {
-                    name: catagoriesResult[i].name,
                     characters: catagoriesResult[i].characters,
-                    difficulty: Number(catagoriesResult[i].difficulty)
                 }
             };
 
@@ -89,7 +87,6 @@ character.delete("/:id", async (req, res) => {
             await catagories.updateOne(updateQuery, updates);
         }
         
-        console.log(catagoriesLength);
         res.send(result).status(200);
     } catch (err) {
         console.error(err);
