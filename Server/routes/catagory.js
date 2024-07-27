@@ -16,7 +16,7 @@ catagory.get("/", async (req, res) => {
         let characterNameArray = [];
         let numCharacters = results[i].characters.length;
         for (let j = 0; j < numCharacters; j++) {
-            let query = { _id: ObjectId.createFromHexString(results[i].characters[j]) }
+            let query = { _id: ObjectId.createFromHexString(results[i].characters[j]) };
             let singleCharacter = await characters.findOne(query);
             characterNameArray[j] = singleCharacter.name;
         }
@@ -33,9 +33,19 @@ catagory.get("/:id", async (req, res) => {
 
     if (!result) {
         res.send("Catagory not found").status(404);
-    } else {
-        res.send(result).status(200);
     }
+
+    let characters = await db.collection("characters");
+    let characterNameArray = [];
+    let numCharacters = result.characters.length;
+    for (let i = 0; i < numCharacters; i++) {
+        let catagoryQuery = { _id: ObjectId.createFromHexString(result.characters[i]) };
+        let singleCharacter = await characters.findOne(catagoryQuery);
+        characterNameArray[i] = singleCharacter.name;
+    }
+    result.characterNames = characterNameArray;
+
+    res.send(result).status(200);
 });
 
 // Add catagory
