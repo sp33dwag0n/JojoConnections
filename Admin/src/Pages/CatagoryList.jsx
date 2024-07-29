@@ -61,7 +61,16 @@ function CatagoryList() {
                 return (
                   <tr key={index}>
                     <td>{catagory.name}</td>
-                    <td>{catagory.characterNames}</td>
+                    <td>
+                      {catagory.characterNames.map((name, key) => {
+                        return (
+                          <div key={key}>
+                            {name}
+                            <br />
+                          </div>
+                        );
+                      })}
+                    </td>
                     <td>{catagory.difficulty}</td>
                     <td><button onClick={() => editCatagory(catagory._id)}>Edit</button></td>
                     <td><button onClick={() => deleteCatagory(catagory)}>Delete</button></td>

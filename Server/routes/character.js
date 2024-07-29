@@ -65,16 +65,15 @@ character.patch("/:id", async (req, res) => {
 // Delete character
 character.delete("/:id", async (req, res) => {
     try {
-        const query = { _id: ObjectId.createFromHexString(req.params.id) };
-
         const characters = await db.collection("characters");
+        const query = { _id: ObjectId.createFromHexString(req.params.id) };
         let result = await characters.deleteOne(query);
 
         const catagories = await db.collection("catagories");
         const catagoryQuery = { characters: req.params.id };
         let catagoriesResult = await catagories.find(catagoryQuery).toArray();
-        let catagoriesLength = catagoriesResult.length;
-        for (let i = 0; i < catagoriesLength; i++) {
+
+        for (let i = 0; i < catagoriesResult.length; i++) {
             let index = catagoriesResult[i].characters.indexOf(req.params.id);
             catagoriesResult[i].characters.splice(index, 1);
             const updates = {

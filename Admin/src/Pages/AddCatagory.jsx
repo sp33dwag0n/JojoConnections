@@ -7,6 +7,7 @@ function AddCatagory() {
   const [form, setForm] = useState({
     name: "",
     characters: [],
+    characterNames: [],
     difficulty: "",
   })
 
@@ -27,7 +28,12 @@ function AddCatagory() {
     document.getElementById("name").value = catagory.name;
     // document.getElementById("characters").value = catagory.characters;
     document.getElementById("difficulty").value = catagory.difficulty;
-    setForm({name: catagory.name, characters: catagory.characters, difficulty: catagory.difficulty});
+    setForm({
+      name: catagory.name, 
+      characters: catagory.characters, 
+      characterNames: catagory.characterNames,
+      difficulty: catagory.difficulty
+    });
   }
 
   async function handleSubmit(e) {
@@ -70,6 +76,10 @@ function AddCatagory() {
       [e.target.name]: e.target.value
     });
   };
+
+  const changeCharacters = () => {
+    console.log("Change characters");
+  }
   
   return (
     <div>
@@ -81,9 +91,21 @@ function AddCatagory() {
       <div>
         <h3>AddCharacter</h3>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>Name: </label>
         <input type="text" name="name" id="name" placeholder="Name" onChange={handleChange} required/>
+        <br />
+
+        <label>Characters: </label>
+        {form.characterNames.map((name, key) => {
+          return (
+            <div style={{display: 'inline'}} key={key}>
+              {name} &nbsp;
+            </div>
+          );
+        })}
+        <br />
+        <button onClick={() => changeCharacters()}>Change Characters</button>
         <br />
 
         <label>Difficulty: </label>
@@ -96,7 +118,7 @@ function AddCatagory() {
         </select>
         <br />
         
-        <button type="submit" >Submit</button>
+        <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   )
