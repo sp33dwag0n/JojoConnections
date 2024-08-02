@@ -39,7 +39,7 @@ function CatagoryList() {
 
     
   return (
-    <div>
+    <div className="catagoryList">
         <div>
           <button onClick={() => navigate("/")}>Home</button>
           <button onClick={() => navigate("/catagories/add")}>Add Catagory</button>

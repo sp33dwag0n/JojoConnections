@@ -71,7 +71,7 @@ function AddCharacter() {
 
   
   return (
-    <div>
+    <div className="addCharacter">
       <div>
         <button onClick={() => navigate("/characters/")}>
           Character List

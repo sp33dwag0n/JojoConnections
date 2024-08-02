@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import CharactersModal from './CharactersModal';
 
 function AddCatagory() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function AddCatagory() {
     characterNames: [],
     difficulty: "",
   })
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -76,13 +78,9 @@ function AddCatagory() {
       [e.target.name]: e.target.value
     });
   };
-
-  const changeCharacters = () => {
-    console.log("Change characters");
-  }
   
   return (
-    <div>
+    <div className="addCatagory">
       <div>
         <button onClick={() => navigate("/catagories/")}>
           Catagory List
@@ -105,7 +103,7 @@ function AddCatagory() {
           );
         })}
         <br />
-        <button onClick={() => changeCharacters()}>Change Characters</button>
+        <button onClick={() => setModal(true)}>Change Characters</button>
         <br />
 
         <label>Difficulty: </label>
@@ -120,6 +118,12 @@ function AddCatagory() {
         
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
+
+      <CharactersModal 
+        open={modal} 
+        onClose={() => setModal(false)} 
+        selectedCharacters={form.characterNames} 
+      />
     </div>
   )
 }

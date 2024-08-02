@@ -39,7 +39,7 @@ function CharacterList() {
   }
   
   return (
-    <div>
+    <div className="characterList">
         <div>
           <button onClick={() => navigate("/")}>Home</button>
           <button onClick={() => navigate("/characters/add")}>Add Character</button>
