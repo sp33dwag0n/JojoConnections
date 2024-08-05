@@ -4,4 +4,25 @@
     padding: 10px;
     border-color: black;
     margin: 30px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #bababa;
+    border-color: #bababa;
+}
+
+.title {
+    color: green;
+    font-family: "Times New Roman";
+    font-size: 30px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.body {
+    align-content: center;
+    align-items: center;
+    place-items: center;
+    display: flex;
 }

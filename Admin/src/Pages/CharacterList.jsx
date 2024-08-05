@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../Styles/list.css';
 
 function CharacterList() {
   const navigate = useNavigate();
@@ -39,11 +40,11 @@ function CharacterList() {
   }
   
   return (
-    <div className="characterList">
-        <div>
+    <div>
+        <div className="header">
           <button onClick={() => navigate("/")}>Home</button>
-          <button onClick={() => navigate("/characters/add")}>Add Character</button>
         </div>
+        <button onClick={() => navigate("/characters/add")}>Add Character</button>
         <div>
           <h3>CharacterList</h3>
         </div>

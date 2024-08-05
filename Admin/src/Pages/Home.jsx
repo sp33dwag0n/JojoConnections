@@ -7,8 +7,8 @@ function Home() {
   
   return (
     <div>
-        <div className="header">
-          <h3>Home</h3>
+        <div>
+          <p className="title">Welcome to the JojoConnections Admin Page!</p>
         </div>
         <div className="body">
           <button className="btn" onClick={() => navigate("/characters")}>View Characters</button>
