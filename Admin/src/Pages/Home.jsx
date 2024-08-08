@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate();
   
   return (
-    <div>
+    <div className="home">
         <div>
           <p className="title">Welcome to the JojoConnections Admin Page!</p>
         </div>

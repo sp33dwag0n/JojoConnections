@@ -43,7 +43,9 @@ function CharacterList() {
     <div>
         <div className="header">
           <button className="header-button" onClick={() => navigate("/")}>Home</button>
-          <p className="list-title">Character List</p>
+          <div className="list-title">
+            Character List
+          </div>
         </div>
         <button onClick={() => navigate("/characters/add")}>Add Character</button>
         <div>
