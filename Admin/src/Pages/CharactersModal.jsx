@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import '../Styles/modal.css';
 
 function CharactersModal({ open, onClose, selectedCharacters }) {
 
@@ -18,16 +19,16 @@ function CharactersModal({ open, onClose, selectedCharacters }) {
   }
 
   useEffect(() => {
-    // getCharacterList();
+    getCharacterList();
   }, []);
-  
+
   return (
-    <div className="charactersModal">
-        <div className="modal">
+    <div className="modal-background">
+        <div className="modal-container">
             Hello
-            <button onClick={() => onClose}>Back</button>
-            <button onClick={() => onClose}>Submit</button>
-            {/* {selectedCharacters} */}
+            <button onClick={onClose}>Back</button>
+            <button onClick={onClose}>Submit</button>
+            {selectedCharacters}
         </div>
     </div>
   )

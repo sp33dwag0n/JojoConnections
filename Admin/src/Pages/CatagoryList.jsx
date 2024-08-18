@@ -39,14 +39,17 @@ function CatagoryList() {
 
     
   return (
-    <div className="catagoryList">
+    <div>
+        <div className="header">
+          <button className="header-button" onClick={() => navigate("/")}>Home</button>
+          <div className="list-title">
+            Catagory List
+          </div>
+        </div>
         <div>
-          <button onClick={() => navigate("/")}>Home</button>
           <button onClick={() => navigate("/catagories/add")}>Add Catagory</button>
         </div>
-        <div>
-          <h3>CatagoryList</h3>
-        </div>
+
         <div>
           <table>
             <thead>

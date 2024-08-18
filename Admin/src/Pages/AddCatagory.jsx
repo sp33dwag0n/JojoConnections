@@ -78,6 +78,16 @@ function AddCatagory() {
       [e.target.name]: e.target.value
     });
   };
+
+  async function openModal(e) {
+    e.preventDefault();
+    setModal(true);
+  }
+
+  async function closeModal(e) {
+    e.preventDefault();
+    setModal(false);
+  }
   
   return (
     <div className="addCatagory">
@@ -103,7 +113,7 @@ function AddCatagory() {
           );
         })}
         <br />
-        <button onClick={() => setModal(true)}>Change Characters</button>
+        <button onClick={openModal}>Change Characters</button>
         <br />
 
         <label>Difficulty: </label>
@@ -121,7 +131,7 @@ function AddCatagory() {
 
       <CharactersModal 
         open={modal} 
-        onClose={() => setModal(false)} 
+        onClose={closeModal} 
         selectedCharacters={form.characterNames} 
       />
     </div>
