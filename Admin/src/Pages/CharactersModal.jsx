@@ -27,7 +27,7 @@ function CharactersModal({ open, onClose, selectedCharacters, changeCharacters }
       newCharacterChecked[character._id] = selectedCharacters.includes(character._id);
     });
     setCharacterChecked(newCharacterChecked);
-  }, [selectedCharacters, characterList, open]);
+  }, [characterList, open]);
 
   const handleCheckboxChange = (id) => {
     setCharacterChecked(prevState => ({
