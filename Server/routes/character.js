@@ -30,7 +30,8 @@ character.post("/", async (req, res) => {
     try {
         let newDocument = {
             name: req.body.name,
-            part: Number(req.body.part)
+            part: Number(req.body.part),
+            img: ""
         };
 
         let characters = await db.collection("characters");
@@ -50,6 +51,7 @@ character.patch("/:id", async (req, res) => {
             $set: {
                 name: req.body.name,
                 part: Number(req.body.part),
+                img: ""
             }
         };
 
