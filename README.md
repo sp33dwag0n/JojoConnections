@@ -1,3 +1,7 @@
-Run the server using: node --env-file=config.env server
+Run the server using: 
+cd server
+node --env-file=config.env server
 
-Run the frontend using: npm run dev
+Run the frontend using:
+cd admin
+npm run dev

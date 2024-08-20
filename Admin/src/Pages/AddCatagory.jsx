@@ -28,7 +28,6 @@ function AddCatagory() {
     }
     const catagory = await response.json();
     document.getElementById("name").value = catagory.name;
-    // document.getElementById("characters").value = catagory.characters;
     document.getElementById("difficulty").value = catagory.difficulty;
     setForm({
       name: catagory.name, 
@@ -88,6 +87,15 @@ function AddCatagory() {
     e.preventDefault();
     setModal(false);
   }
+
+  async function changeCharacters(newCharacterIds, newCharacterNames) {
+    setForm({
+      ...form,
+      characters: newCharacterIds,
+      characterNames: newCharacterNames
+    });
+    setModal(false);
+  }
   
   return (
     <div className="addCatagory">
@@ -97,7 +105,7 @@ function AddCatagory() {
         </button>
       </div>
       <div>
-        <h3>AddCharacter</h3>
+        <h3>Add Catagory</h3>
       </div>
       <form>
         <label>Name: </label>
@@ -132,7 +140,8 @@ function AddCatagory() {
       <CharactersModal 
         open={modal} 
         onClose={closeModal} 
-        selectedCharacters={form.characterNames} 
+        selectedCharacters={form.characters} 
+        changeCharacters={changeCharacters}
       />
     </div>
   )

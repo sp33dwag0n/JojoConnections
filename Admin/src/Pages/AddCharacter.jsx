@@ -78,7 +78,7 @@ function AddCharacter() {
         </button>
       </div>
       <div>
-        <h3>AddCharacter</h3>
+        <h3>Add Character</h3>
       </div>
       <form onSubmit={handleSubmit}>
         <label>Name: </label>
