@@ -15,6 +15,7 @@ function CharacterList() {
       return;
     }
     const characters = await response.json();
+    characters.sort((a, b) => a.part - b.part || a.name.localeCompare(b.name));
     setCharacterList(characters);
   }
   

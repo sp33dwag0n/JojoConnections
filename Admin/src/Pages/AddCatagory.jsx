@@ -96,7 +96,7 @@ function AddCatagory() {
     });
     setModal(false);
   }
-  
+
   return (
     <div className="addCatagory">
       <div>
@@ -107,7 +107,7 @@ function AddCatagory() {
       <div>
         <h3>Add Catagory</h3>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Name: </label>
         <input type="text" name="name" id="name" placeholder="Name" onChange={handleChange} required/>
         <br />
@@ -134,7 +134,7 @@ function AddCatagory() {
         </select>
         <br />
         
-        <button type="submit" onClick={handleSubmit}>Submit</button>
+        <button type="submit" onSubmit={handleSubmit}>Submit</button>
       </form>
 
       <CharactersModal 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 function CatagoryList() {
   const navigate = useNavigate();
   const [catagoryList, setCatagoryList] = useState([]);
+  const diff = ["", "Easy", "Medium", "Hard", "Extreme"];
 
   async function getCatagoryList() {
     const response = await fetch(`http://localhost:5050/catagory/`);
@@ -13,6 +14,7 @@ function CatagoryList() {
       return;
     }
     const catagories = await response.json();
+    catagories.sort((a, b) => a.difficulty - b.difficulty);
     setCatagoryList(catagories);
   }
 
@@ -25,7 +27,7 @@ function CatagoryList() {
   }
 
   async function deleteCatagory(catagory) {
-    if (!window.confirm("Delete the " + catagory.difficulty + " catagory \"" + catagory.name + "\"?")) return;
+    if (!window.confirm("Delete the " + diff[catagory.difficulty] + " catagory \"" + catagory.name + "\"?")) return;
 
     try {
       let response = await fetch("http://localhost:5050/catagory/" + catagory._id, {
@@ -74,7 +76,7 @@ function CatagoryList() {
                         );
                       })}
                     </td>
-                    <td>{catagory.difficulty}</td>
+                    <td>{diff[catagory.difficulty]}</td>
                     <td><button onClick={() => editCatagory(catagory._id)}>Edit</button></td>
                     <td><button onClick={() => deleteCatagory(catagory)}>Delete</button></td>
                   </tr>
