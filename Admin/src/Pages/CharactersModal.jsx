@@ -5,6 +5,7 @@ function CharactersModal({ open, onClose, selectedCharacters, changeCharacters }
 
   const [characterList, setCharacterList] = useState([]);
   const [characterChecked, setCharacterChecked] = useState([]);
+  const [groupedCharacterList, setGroupedCharacterList] = useState([]);
 
   async function getCharacterList() {
     const response = await fetch(`http://localhost:5050/character/`);
@@ -24,13 +25,21 @@ function CharactersModal({ open, onClose, selectedCharacters, changeCharacters }
 
   useEffect(() => {
     const newCharacterChecked = {};
+    const groupedCharacters = {};
+
     characterList.forEach((character) => {
       newCharacterChecked[character._id] = selectedCharacters.includes(character._id);
+      
+      if (!groupedCharacters[character.part]) {
+        groupedCharacters[character.part] = [];
+      }
+      groupedCharacters[character.part].push(character);
     });
     setCharacterChecked(newCharacterChecked);
+    setGroupedCharacterList(groupedCharacters);
   }, [characterList, open]);
 
-  const handleCheckboxChange = (id) => {
+  const handleChange = (id) => {
     setCharacterChecked(prevState => ({
       ...prevState,
       [id]: !prevState[id],
@@ -54,18 +63,22 @@ function CharactersModal({ open, onClose, selectedCharacters, changeCharacters }
               <button onClick={submitCharacters}>Submit</button>
             </div>
             <div>
-              {characterList.map((character) => {
-                return (
-                  <div key={character._id}>
-                    <input type="checkbox" 
-                      id={character._id} 
-                      checked={characterChecked[character._id] || false} 
-                      onChange={() => handleCheckboxChange(character._id)}>
-                    </input>
-                    {character.name}
-                  </div>
-                );
-              })}
+              {Object.entries(groupedCharacterList).map(([part, characters]) => (
+                <div key={part}>
+                  <h3>Part {part}</h3>
+                  {characters.map((character) => (
+                    <div key={character._id}>
+                      <input
+                        type="checkbox"
+                        id={character._id}
+                        checked={characterChecked[character._id] || false}
+                        onChange={() => handleChange(character._id)}
+                      />
+                      {character.name}
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
         </div>
     </div>
