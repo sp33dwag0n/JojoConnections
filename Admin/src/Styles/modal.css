@@ -7,8 +7,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 50px;
 }
 
 .modal-container {
@@ -18,4 +17,5 @@
     width: 90%;
     max-height: 80%;
     margin: auto;
+    overflow-y: scroll;
 }
