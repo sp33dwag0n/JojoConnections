@@ -97,6 +97,11 @@ function AddCatagory() {
     setModal(false);
   }
 
+  let headerLabel = "Add Catagory";
+  if (id) {
+    headerLabel = "Edit Catagory";
+  }
+
   return (
     <div className="addCatagory">
       <div>
@@ -105,7 +110,7 @@ function AddCatagory() {
         </button>
       </div>
       <div>
-        <h3>Add Catagory</h3>
+        <h3>{headerLabel}</h3>
       </div>
       <form onSubmit={handleSubmit}>
         <label>Name: </label>

@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from './Pages/Home.jsx';
+import Home from './Pages/AdminHome.jsx';
 import CharacterList from './Pages/CharacterList.jsx';
 import AddCharacter from './Pages/AddCharacter.jsx';
 import CatagoryList from './Pages/CatagoryList.jsx';
 import AddCatagory from './Pages/AddCatagory.jsx';
+import AdminHome from "./Pages/AdminHome.jsx";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<AdminHome />} />
             <Route exact path="/characters" element={<CharacterList />} />
             <Route exact path="/characters/add" element={<AddCharacter />} />
             <Route exact path="/characters/edit/:id" element={<AddCharacter />} />
