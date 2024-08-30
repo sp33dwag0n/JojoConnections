@@ -68,7 +68,7 @@ function AddCatagory() {
       }
     }
 
-    navigate("/catagories/");
+    navigate("/admin/catagories/");
   }
 
   const handleChange = (e) => {
@@ -105,7 +105,7 @@ function AddCatagory() {
   return (
     <div className="addCatagory">
       <div>
-        <button onClick={() => navigate("/catagories/")}>
+        <button onClick={() => navigate("/admin/catagories/")}>
           Catagory List
         </button>
       </div>

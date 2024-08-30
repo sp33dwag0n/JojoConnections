@@ -24,7 +24,7 @@ function CharacterList() {
   }, []);
 
   const editCharacter = (id) => {
-    navigate("/characters/edit/" + id);
+    navigate("/admin/characters/edit/" + id);
   }
 
   async function deleteCharacter(character) {
@@ -43,14 +43,14 @@ function CharacterList() {
   return (
     <div>
         <div className="list-header">
-          <button className="header-button" onClick={() => navigate("/")}>Home</button>
+          <button className="header-button" onClick={() => navigate("/admin")}>Home</button>
           <div className="list-title">
             Character List
           </div>
         </div>
         
         <div className="list-body">
-          <button onClick={() => navigate("/characters/add")}>Add Character</button>
+          <button onClick={() => navigate("/admin/characters/add")}>Add Character</button>
           <table>
             <thead>
               <tr>

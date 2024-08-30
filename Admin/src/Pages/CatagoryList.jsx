@@ -23,7 +23,7 @@ function CatagoryList() {
   }, []);
 
   const editCatagory = (id) => {
-    navigate("/catagories/edit/" + id);
+    navigate("/admin/catagories/edit/" + id);
   }
 
   async function deleteCatagory(catagory) {
@@ -43,14 +43,14 @@ function CatagoryList() {
   return (
     <div>
         <div className="list-header">
-          <button className="header-button" onClick={() => navigate("/")}>Home</button>
+          <button className="header-button" onClick={() => navigate("/admin")}>Home</button>
           <div className="list-title">
             Catagory List
           </div>
         </div>
 
         <div className="list-body">
-          <button onClick={() => navigate("/catagories/add")}>Add Catagory</button>
+          <button onClick={() => navigate("/admin/catagories/add")}>Add Catagory</button>
           <table>
             <thead>
               <tr>

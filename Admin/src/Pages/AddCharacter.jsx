@@ -59,7 +59,7 @@ function AddCharacter() {
       }
     }
 
-    navigate("/characters/");
+    navigate("/admin/characters/");
   }
 
   const handleChange = (e) => {
@@ -77,7 +77,7 @@ function AddCharacter() {
   return (
     <div className="">
       <div>
-        <button onClick={() => navigate("/characters/")}>
+        <button onClick={() => navigate("/admin/characters/")}>
           Character List
         </button>
       </div>

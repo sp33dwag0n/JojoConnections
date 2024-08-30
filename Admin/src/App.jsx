@@ -5,6 +5,7 @@ import AddCharacter from './Pages/AddCharacter.jsx';
 import CatagoryList from './Pages/CatagoryList.jsx';
 import AddCatagory from './Pages/AddCatagory.jsx';
 import AdminHome from "./Pages/AdminHome.jsx";
+import Puzzle from "./Pages/Puzzle.jsx";
 
 function App() {
 
@@ -13,13 +14,15 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<AdminHome />} />
-            <Route exact path="/characters" element={<CharacterList />} />
-            <Route exact path="/characters/add" element={<AddCharacter />} />
-            <Route exact path="/characters/edit/:id" element={<AddCharacter />} />
-            <Route exact path="/catagories" element={<CatagoryList />} />
-            <Route exact path="/catagories/add" element={<AddCatagory />} />
-            <Route exact path="/catagories/edit/:id" element={<AddCatagory />} />
+            <Route exact path="/" element={<Puzzle />} />
+            
+            <Route exact path="/admin" element={<AdminHome />} />
+            <Route exact path="/admin/characters" element={<CharacterList />} />
+            <Route exact path="/admin/characters/add" element={<AddCharacter />} />
+            <Route exact path="/admin/characters/edit/:id" element={<AddCharacter />} />
+            <Route exact path="/admin/catagories" element={<CatagoryList />} />
+            <Route exact path="/admin/catagories/add" element={<AddCatagory />} />
+            <Route exact path="/admin/catagories/edit/:id" element={<AddCatagory />} />
           </Routes>
         </BrowserRouter>
       </div>

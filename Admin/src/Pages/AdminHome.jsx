@@ -11,8 +11,8 @@ function AdminHome() {
           <p className="title">Welcome to the JojoConnections Admin Page!</p>
         </div>
         <div className="body">
-          <button className="btn" onClick={() => navigate("/characters")}>View Characters</button>
-          <button className="btn" onClick={() => navigate("/catagories")}>View Catagories</button>
+          <button className="btn" onClick={() => navigate("/admin/characters")}>View Characters</button>
+          <button className="btn" onClick={() => navigate("/admin/catagories")}>View Catagories</button>
         </div>
     </div>
   )
